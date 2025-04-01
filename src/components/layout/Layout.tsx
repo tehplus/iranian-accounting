@@ -1,5 +1,10 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Sidebar } from './Sidebar/Sidebar';
+
+interface LayoutProps {
+  children: ReactNode;
+}
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -11,14 +16,20 @@ const MainContent = styled.main`
   margin-right: 280px;
   padding: ${({ theme }) => theme.spacing.md};
   background-color: ${({ theme }) => theme.colors.background.default};
+  min-height: 100vh;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-right: 0;
+    padding: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
-function Layout() {
+function Layout({ children }: LayoutProps) {
   return (
     <LayoutContainer>
       <Sidebar />
       <MainContent>
-        <h1>سیستم حسابداری فروشگاه</h1>
+        {children}
       </MainContent>
     </LayoutContainer>
   );
