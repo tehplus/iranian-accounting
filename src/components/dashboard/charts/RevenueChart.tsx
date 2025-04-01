@@ -10,8 +10,7 @@ import {
   Legend,
   Filler,
   ChartData,
-  ChartOptions,
-  Color
+  ChartOptions
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
@@ -36,33 +35,34 @@ const ChartTitle = styled.h3`
   ${chartStyles.titleStyle}
 `;
 
-interface ExpenseDataPoint {
+interface RevenueDataPoint {
   month: string;
-  fixed: number;
-  variable: number;
+  grossRevenue: number;
+  netRevenue: number;
+  operatingCosts: number;
 }
 
-const expenseData: ExpenseDataPoint[] = [
-  { month: 'فروردین', fixed: 12500000, variable: 8500000 },
-  { month: 'اردیبهشت', fixed: 12500000, variable: 9200000 },
-  { month: 'خرداد', fixed: 12800000, variable: 9800000 },
-  { month: 'تیر', fixed: 12800000, variable: 11500000 },
-  { month: 'مرداد', fixed: 13000000, variable: 10800000 },
-  { month: 'شهریور', fixed: 13000000, variable: 12000000 },
-  { month: 'مهر', fixed: 13500000, variable: 13200000 },
-  { month: 'آبان', fixed: 13500000, variable: 12800000 },
-  { month: 'آذر', fixed: 14000000, variable: 13500000 },
-  { month: 'دی', fixed: 14000000, variable: 14200000 },
-  { month: 'بهمن', fixed: 14500000, variable: 13800000 },
-  { month: 'اسفند', fixed: 14500000, variable: 15500000 }
+const revenueData: RevenueDataPoint[] = [
+  { month: 'فروردین', grossRevenue: 25000000, netRevenue: 18500000, operatingCosts: 6500000 },
+  { month: 'اردیبهشت', grossRevenue: 28000000, netRevenue: 20800000, operatingCosts: 7200000 },
+  { month: 'خرداد', grossRevenue: 32000000, netRevenue: 24200000, operatingCosts: 7800000 },
+  { month: 'تیر', grossRevenue: 38000000, netRevenue: 28500000, operatingCosts: 9500000 },
+  { month: 'مرداد', grossRevenue: 35000000, netRevenue: 26200000, operatingCosts: 8800000 },
+  { month: 'شهریور', grossRevenue: 42000000, netRevenue: 31500000, operatingCosts: 10500000 },
+  { month: 'مهر', grossRevenue: 45000000, netRevenue: 33800000, operatingCosts: 11200000 },
+  { month: 'آبان', grossRevenue: 43000000, netRevenue: 32200000, operatingCosts: 10800000 },
+  { month: 'آذر', grossRevenue: 48000000, netRevenue: 36000000, operatingCosts: 12000000 },
+  { month: 'دی', grossRevenue: 52000000, netRevenue: 39000000, operatingCosts: 13000000 },
+  { month: 'بهمن', grossRevenue: 50000000, netRevenue: 37500000, operatingCosts: 12500000 },
+  { month: 'اسفند', grossRevenue: 58000000, netRevenue: 43500000, operatingCosts: 14500000 }
 ];
 
 const chartData: ChartData<'line'> = {
-  labels: expenseData.map(data => data.month),
+  labels: revenueData.map(data => data.month),
   datasets: [
     {
-      label: 'هزینه‌های ثابت',
-      data: expenseData.map(data => data.fixed),
+      label: 'درآمد ناخالص',
+      data: revenueData.map(data => data.grossRevenue),
       borderColor: '#6366f1',
       backgroundColor: 'rgba(99, 102, 241, 0.1)',
       fill: true,
@@ -70,8 +70,17 @@ const chartData: ChartData<'line'> = {
       borderWidth: 2
     },
     {
-      label: 'هزینه‌های متغیر',
-      data: expenseData.map(data => data.variable),
+      label: 'درآمد خالص',
+      data: revenueData.map(data => data.netRevenue),
+      borderColor: '#10b981',
+      backgroundColor: 'rgba(16, 185, 129, 0.1)',
+      fill: true,
+      tension: 0.4,
+      borderWidth: 2
+    },
+    {
+      label: 'هزینه‌های عملیاتی',
+      data: revenueData.map(data => data.operatingCosts),
       borderColor: '#f43f5e',
       backgroundColor: 'rgba(244, 63, 94, 0.1)',
       fill: true,
@@ -180,7 +189,7 @@ const options: ChartOptions<'line'> = {
   }
 };
 
-export const ExpensesChart = () => {
+export const RevenueChart = () => {
   const chartRef = useRef<ChartJS<'line'>>(null);
 
   useEffect(() => {
@@ -189,13 +198,14 @@ export const ExpensesChart = () => {
 
     const ctx = chart.ctx;
     const gradient1 = createGradient(ctx, ['rgba(99, 102, 241, 0.5)', 'rgba(99, 102, 241, 0.0)']);
-    const gradient2 = createGradient(ctx, ['rgba(244, 63, 94, 0.5)', 'rgba(244, 63, 94, 0.0)']);
+    const gradient2 = createGradient(ctx, ['rgba(16, 185, 129, 0.5)', 'rgba(16, 185, 129, 0.0)']);
+    const gradient3 = createGradient(ctx, ['rgba(244, 63, 94, 0.5)', 'rgba(244, 63, 94, 0.0)']);
 
     const newData = {
       ...chartData,
       datasets: chartData.datasets.map((dataset, index) => ({
         ...dataset,
-        backgroundColor: index === 0 ? gradient1 : gradient2
+        backgroundColor: index === 0 ? gradient1 : index === 1 ? gradient2 : gradient3
       }))
     };
 
@@ -205,7 +215,7 @@ export const ExpensesChart = () => {
 
   return (
     <ChartContainer>
-      <ChartTitle>نمودار هزینه‌های ماهانه</ChartTitle>
+      <ChartTitle>نمودار درآمد و هزینه‌های عملیاتی</ChartTitle>
       <Line 
         ref={chartRef}
         data={chartData}
@@ -215,4 +225,4 @@ export const ExpensesChart = () => {
   );
 };
 
-export default ExpensesChart;
+export default RevenueChart;

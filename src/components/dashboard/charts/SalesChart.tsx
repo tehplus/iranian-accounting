@@ -8,11 +8,17 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  ChartData,
+  ChartOptions,
+  ScriptableContext,
+  ScriptableScaleContext,
+  Scale,
+  CoreScaleOptions
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
-import { baseChartOptions, createGradient, chartStyles } from '../../../config/chartConfig';
+import { baseChartOptions, createGradient, chartStyles, ChartDataType } from '../../../config/chartConfig';
 
 // ثبت کامپوننت‌های مورد نیاز Chart.js
 ChartJS.register(
@@ -34,8 +40,18 @@ const ChartTitle = styled.h3`
   ${chartStyles.titleStyle}
 `;
 
-// داده‌های موک برای نمایش نمودار
-const salesData = {
+type DatasetType = {
+  label: string;
+  data: number[];
+  borderWidth: number;
+  fill: boolean;
+  tension: number;
+  backgroundColor: string | CanvasGradient;
+  borderColor: string;
+};
+
+// داده‌های نمودار با تایپ صحیح
+const salesData: ChartData<'line', number[], string> = {
   labels: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 
            'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
   datasets: [
@@ -46,6 +62,8 @@ const salesData = {
       borderWidth: 2,
       fill: true,
       tension: 0.4,
+      backgroundColor: 'rgba(99, 102, 241, 0.1)',
+      borderColor: '#6366f1',
     },
     {
       label: 'سود',
@@ -54,12 +72,126 @@ const salesData = {
       borderWidth: 2,
       fill: true,
       tension: 0.4,
+      backgroundColor: 'rgba(16, 185, 129, 0.1)',
+      borderColor: '#10b981',
     }
   ]
 };
 
+// تنظیمات اختصاصی نمودار با تایپ صحیح
+const options: ChartOptions<'line'> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+      rtl: true,
+      labels: {
+        font: {
+          family: 'AnjomanMax',
+          size: 12,
+        },
+        usePointStyle: true,
+        padding: 20,
+      },
+    },
+    tooltip: {
+      rtl: true,
+      titleFont: {
+        family: 'AnjomanMax',
+        size: 13,
+      },
+      bodyFont: {
+        family: 'AnjomanMax',
+        size: 12,
+      },
+      padding: 12,
+      backgroundColor: 'rgba(30, 41, 59, 0.9)',
+      titleColor: '#fff',
+      bodyColor: '#fff',
+      borderColor: 'rgba(255, 255, 255, 0.1)',
+      borderWidth: 1,
+      displayColors: true,
+      callbacks: {
+        label: function(context) {
+          let label = context.dataset.label || '';
+          if (label) {
+            label += ': ';
+          }
+          if (context.parsed.y !== null) {
+            label += new Intl.NumberFormat('fa-IR', {
+              style: 'currency',
+              currency: 'IRR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0
+            }).format(context.parsed.y);
+          }
+          return label;
+        }
+      }
+    }
+  },
+  interaction: {
+    intersect: false,
+    mode: 'index' as const,
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        font: {
+          family: 'AnjomanMax',
+          size: 12,
+        },
+      },
+    },
+    y: {
+      type: 'linear' as const,
+      display: true,
+      position: 'left' as const,
+      grid: {
+        color: 'rgba(99, 102, 241, 0.1)',
+        display: true,
+        lineWidth: 1,
+        tickColor: 'rgba(99, 102, 241, 0.1)',
+        tickWidth: 1,
+        offset: true
+      },
+      ticks: {
+        font: {
+          family: 'AnjomanMax',
+          size: 12,
+        },
+        callback: function(value) {
+          return new Intl.NumberFormat('fa-IR', {
+            style: 'currency',
+            currency: 'IRR',
+            notation: 'compact',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+          }).format(value as number);
+        }
+      }
+    }
+  },
+  elements: {
+    line: {
+      tension: 0.4
+    },
+    point: {
+      radius: 4,
+      hitRadius: 10,
+      hoverRadius: 6,
+      backgroundColor: 'white',
+      borderWidth: 2
+    }
+  }
+};
+
 export const SalesChart = () => {
-  const chartRef = useRef<ChartJS>(null);
+  const chartRef = useRef<ChartJS<'line'>>(null);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -70,67 +202,28 @@ export const SalesChart = () => {
     const gradient2 = createGradient(ctx, ['rgba(16, 185, 129, 0.5)', 'rgba(16, 185, 129, 0.0)']);
 
     // به‌روزرسانی رنگ‌های نمودار
-    salesData.datasets[0].backgroundColor = gradient1;
-    salesData.datasets[0].borderColor = '#6366f1';
-    salesData.datasets[1].backgroundColor = gradient2;
-    salesData.datasets[1].borderColor = '#10b981';
+    const newData = {
+      ...salesData,
+      datasets: salesData.datasets.map((dataset, index) => ({
+        ...dataset,
+        backgroundColor: index === 0 ? gradient1 : gradient2
+      }))
+    };
 
+    chart.data = newData;
     chart.update();
   }, []);
-
-  // تنظیمات اختصاصی نمودار فروش
-  const options = {
-    ...baseChartOptions,
-    plugins: {
-      ...baseChartOptions.plugins,
-      title: {
-        display: false
-      },
-      tooltip: {
-        ...baseChartOptions.plugins?.tooltip,
-        callbacks: {
-          label: function(context: any) {
-            let label = context.dataset.label || '';
-            if (label) {
-              label += ': ';
-            }
-            if (context.parsed.y !== null) {
-              label += new Intl.NumberFormat('fa-IR', {
-                style: 'currency',
-                currency: 'IRR',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-              }).format(context.parsed.y);
-            }
-            return label;
-          }
-        }
-      }
-    },
-    scales: {
-      ...baseChartOptions.scales,
-      y: {
-        ...baseChartOptions.scales?.y,
-        ticks: {
-          ...baseChartOptions.scales?.y?.ticks,
-          callback: function(value: any) {
-            return new Intl.NumberFormat('fa-IR', {
-              style: 'currency',
-              currency: 'IRR',
-              notation: 'compact',
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0
-            }).format(value);
-          }
-        }
-      }
-    }
-  };
 
   return (
     <ChartContainer>
       <ChartTitle>نمودار فروش و سود سالانه</ChartTitle>
-      <Line ref={chartRef} data={salesData} options={options} />
+      <Line 
+        ref={chartRef}
+        data={salesData}
+        options={options}
+      />
     </ChartContainer>
   );
 };
+
+export default SalesChart;

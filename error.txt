@@ -1,0 +1,553 @@
+C:\src\react\iranian-accounting (main -> origin)
+λ npm install better-sqlite3 @types/better-sqlite3 --save
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/animated@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/animated@9.7.5
+npm warn node_modules/@react-spring/animated
+npm warn   @react-spring/animated@"~9.7.5" from @react-spring/core@9.7.5
+npm warn   node_modules/@react-spring/core
+npm warn   3 more (@react-spring/konva, @react-spring/web, @react-spring/zdog)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/animated@9.7.5
+npm warn   node_modules/@react-spring/animated
+npm warn     @react-spring/animated@"~9.7.5" from @react-spring/core@9.7.5
+npm warn     node_modules/@react-spring/core
+npm warn     3 more (@react-spring/konva, @react-spring/web, @react-spring/zdog)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/core@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/core@9.7.5
+npm warn node_modules/@react-spring/core
+npm warn   @react-spring/core@"~9.7.5" from @react-spring/konva@9.7.5
+npm warn   node_modules/@react-spring/konva
+npm warn   3 more (@react-spring/web, @react-spring/zdog, react-spring)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/core@9.7.5
+npm warn   node_modules/@react-spring/core
+npm warn     @react-spring/core@"~9.7.5" from @react-spring/konva@9.7.5
+npm warn     node_modules/@react-spring/konva
+npm warn     3 more (@react-spring/web, @react-spring/zdog, react-spring)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/konva@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/konva@9.7.5
+npm warn node_modules/@react-spring/konva
+npm warn   @react-spring/konva@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/konva@9.7.5
+npm warn   node_modules/@react-spring/konva
+npm warn     @react-spring/konva@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/shared@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/shared@9.7.5
+npm warn node_modules/@react-spring/shared
+npm warn   @react-spring/shared@"~9.7.5" from @react-spring/animated@9.7.5
+npm warn   node_modules/@react-spring/animated
+npm warn   4 more (@react-spring/core, @react-spring/konva, ...)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/shared@9.7.5
+npm warn   node_modules/@react-spring/shared
+npm warn     @react-spring/shared@"~9.7.5" from @react-spring/animated@9.7.5
+npm warn     node_modules/@react-spring/animated
+npm warn     4 more (@react-spring/core, @react-spring/konva, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/web@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn node_modules/@react-spring/web
+npm warn   @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn   node_modules/@react-spring/web
+npm warn     @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/web@9.7.5
+npm warn Found: react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^17.0.0 || ^18.0.0 || ^19.0.0" from @mui/x-date-pickers@7.28.2
+npm warn   node_modules/@mui/x-date-pickers
+npm warn   15 more (react-element-popper, react-konva, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn node_modules/@react-spring/web
+npm warn   @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn   node_modules/@react-spring/web
+npm warn     @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/zdog@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn node_modules/@react-spring/zdog
+npm warn   @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn   node_modules/@react-spring/zdog
+npm warn     @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/zdog@9.7.5
+npm warn Found: react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^17.0.0 || ^18.0.0 || ^19.0.0" from @mui/x-date-pickers@7.28.2
+npm warn   node_modules/@mui/x-date-pickers
+npm warn   15 more (react-element-popper, react-konva, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn node_modules/@react-spring/zdog
+npm warn   @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn   node_modules/@react-spring/zdog
+npm warn     @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-native@0.78.2
+npm warn Found: @types/react@18.3.20
+npm warn node_modules/@types/react
+npm warn   peerOptional @types/react@"^19.0.0" from @react-native/virtualized-lists@0.78.2
+npm warn   node_modules/react-native/node_modules/@react-native/virtualized-lists
+npm warn     @react-native/virtualized-lists@"0.78.2" from react-native@0.78.2
+npm warn     node_modules/react-native
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional @types/react@"^19.0.0" from react-native@0.78.2
+npm warn node_modules/react-native
+npm warn
+npm warn Conflicting peer dependency: @types/react@19.0.12
+npm warn node_modules/@types/react
+npm warn   peerOptional @types/react@"^19.0.0" from react-native@0.78.2
+npm warn   node_modules/react-native
+npm warn ERESOLVE overriding peer dependency
+npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: react-spring@9.7.5
+npm error Found: react@19.1.0
+npm error node_modules/react
+npm error   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm error   node_modules/@emotion/react
+npm error     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm error     node_modules/@emotion/styled
+npm error       peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@7.0.1
+npm error       node_modules/@mui/styled-engine
+npm error         @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error         node_modules/@mui/system
+npm error       7 more (@mui/system, @mui/x-date-pickers, the root project, ...)
+npm error     peerOptional @emotion/react@"^11.4.1" from @mui/styled-engine@7.0.1
+npm error     node_modules/@mui/styled-engine
+npm error       @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error       node_modules/@mui/system
+npm error         peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error         node_modules/@mui/x-date-pickers
+npm error     7 more (@mui/system, @mui/x-date-pickers, the root project, ...)
+npm error   peer react@">=16.8.0" from @emotion/styled@11.14.0
+npm error   node_modules/@emotion/styled
+npm error     peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@7.0.1
+npm error     node_modules/@mui/styled-engine
+npm error       @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error       node_modules/@mui/system
+npm error         peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error         node_modules/@mui/x-date-pickers
+npm error     peerOptional @emotion/styled@"^11.3.0" from @mui/system@7.0.1
+npm error     node_modules/@mui/system
+npm error       peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error       node_modules/@mui/x-date-pickers
+npm error     6 more (@mui/x-date-pickers, the root project, @mui/material, ...)
+npm error   38 more (@emotion/use-insertion-effect-with-fallbacks, ...)
+npm error
+npm error Could not resolve dependency:
+npm error peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-spring@9.7.5
+npm error node_modules/react-spring
+npm error   react-spring@"^9.7.3" from the root project
+npm error
+npm error Conflicting peer dependency: react@18.3.1
+npm error node_modules/react
+npm error   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-spring@9.7.5
+npm error   node_modules/react-spring
+npm error     react-spring@"^9.7.3" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_15_49_426Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_15_49_426Z-debug-0.log
+
+C:\src\react\iranian-accounting (main -> origin)
+λ npm uninstall date-fns-jalali
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/animated@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/animated@9.7.5
+npm warn node_modules/@react-spring/animated
+npm warn   @react-spring/animated@"~9.7.5" from @react-spring/core@9.7.5
+npm warn   node_modules/@react-spring/core
+npm warn   3 more (@react-spring/konva, @react-spring/web, @react-spring/zdog)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/animated@9.7.5
+npm warn   node_modules/@react-spring/animated
+npm warn     @react-spring/animated@"~9.7.5" from @react-spring/core@9.7.5
+npm warn     node_modules/@react-spring/core
+npm warn     3 more (@react-spring/konva, @react-spring/web, @react-spring/zdog)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/core@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/core@9.7.5
+npm warn node_modules/@react-spring/core
+npm warn   @react-spring/core@"~9.7.5" from @react-spring/konva@9.7.5
+npm warn   node_modules/@react-spring/konva
+npm warn   3 more (@react-spring/web, @react-spring/zdog, react-spring)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/core@9.7.5
+npm warn   node_modules/@react-spring/core
+npm warn     @react-spring/core@"~9.7.5" from @react-spring/konva@9.7.5
+npm warn     node_modules/@react-spring/konva
+npm warn     3 more (@react-spring/web, @react-spring/zdog, react-spring)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/konva@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/konva@9.7.5
+npm warn node_modules/@react-spring/konva
+npm warn   @react-spring/konva@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/konva@9.7.5
+npm warn   node_modules/@react-spring/konva
+npm warn     @react-spring/konva@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/shared@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/shared@9.7.5
+npm warn node_modules/@react-spring/shared
+npm warn   @react-spring/shared@"~9.7.5" from @react-spring/animated@9.7.5
+npm warn   node_modules/@react-spring/animated
+npm warn   4 more (@react-spring/core, @react-spring/konva, ...)
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/shared@9.7.5
+npm warn   node_modules/@react-spring/shared
+npm warn     @react-spring/shared@"~9.7.5" from @react-spring/animated@9.7.5
+npm warn     node_modules/@react-spring/animated
+npm warn     4 more (@react-spring/core, @react-spring/konva, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/web@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn node_modules/@react-spring/web
+npm warn   @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn   node_modules/@react-spring/web
+npm warn     @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/web@9.7.5
+npm warn Found: react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^17.0.0 || ^18.0.0 || ^19.0.0" from @mui/x-date-pickers@7.28.2
+npm warn   node_modules/@mui/x-date-pickers
+npm warn   15 more (react-element-popper, react-konva, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn node_modules/@react-spring/web
+npm warn   @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/web@9.7.5
+npm warn   node_modules/@react-spring/web
+npm warn     @react-spring/web@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/zdog@9.7.5
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm warn   node_modules/@emotion/react
+npm warn     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm warn     node_modules/@emotion/styled
+npm warn     8 more (@mui/styled-engine, @mui/system, @mui/x-date-pickers, ...)
+npm warn   39 more (@emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn node_modules/@react-spring/zdog
+npm warn   @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn   node_modules/@react-spring/zdog
+npm warn     @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @react-spring/zdog@9.7.5
+npm warn Found: react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^17.0.0 || ^18.0.0 || ^19.0.0" from @mui/x-date-pickers@7.28.2
+npm warn   node_modules/@mui/x-date-pickers
+npm warn   15 more (react-element-popper, react-konva, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn node_modules/@react-spring/zdog
+npm warn   @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn   node_modules/react-spring
+npm warn
+npm warn Conflicting peer dependency: react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^16.8.0 || ^17.0.0 || ^18.0.0" from @react-spring/zdog@9.7.5
+npm warn   node_modules/@react-spring/zdog
+npm warn     @react-spring/zdog@"~9.7.5" from react-spring@9.7.5
+npm warn     node_modules/react-spring
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-native@0.78.2
+npm warn Found: @types/react@18.3.20
+npm warn node_modules/@types/react
+npm warn   peerOptional @types/react@"^19.0.0" from @react-native/virtualized-lists@0.78.2
+npm warn   node_modules/react-native/node_modules/@react-native/virtualized-lists
+npm warn     @react-native/virtualized-lists@"0.78.2" from react-native@0.78.2
+npm warn     node_modules/react-native
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional @types/react@"^19.0.0" from react-native@0.78.2
+npm warn node_modules/react-native
+npm warn
+npm warn Conflicting peer dependency: @types/react@19.0.12
+npm warn node_modules/@types/react
+npm warn   peerOptional @types/react@"^19.0.0" from react-native@0.78.2
+npm warn   node_modules/react-native
+npm warn ERESOLVE overriding peer dependency
+npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: react-spring@9.7.5
+npm error Found: react@19.1.0
+npm error node_modules/react
+npm error   peer react@">=16.8.0" from @emotion/react@11.14.0
+npm error   node_modules/@emotion/react
+npm error     peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.14.0
+npm error     node_modules/@emotion/styled
+npm error       peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@7.0.1
+npm error       node_modules/@mui/styled-engine
+npm error         @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error         node_modules/@mui/system
+npm error       7 more (@mui/system, @mui/x-date-pickers, the root project, ...)
+npm error     peerOptional @emotion/react@"^11.4.1" from @mui/styled-engine@7.0.1
+npm error     node_modules/@mui/styled-engine
+npm error       @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error       node_modules/@mui/system
+npm error         peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error         node_modules/@mui/x-date-pickers
+npm error     7 more (@mui/system, @mui/x-date-pickers, the root project, ...)
+npm error   peer react@">=16.8.0" from @emotion/styled@11.14.0
+npm error   node_modules/@emotion/styled
+npm error     peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@7.0.1
+npm error     node_modules/@mui/styled-engine
+npm error       @mui/styled-engine@"^7.0.1" from @mui/system@7.0.1
+npm error       node_modules/@mui/system
+npm error         peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error         node_modules/@mui/x-date-pickers
+npm error     peerOptional @emotion/styled@"^11.3.0" from @mui/system@7.0.1
+npm error     node_modules/@mui/system
+npm error       peer @mui/system@"^5.15.14 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta" from @mui/x-date-pickers@7.28.2
+npm error       node_modules/@mui/x-date-pickers
+npm error     6 more (@mui/x-date-pickers, the root project, @mui/material, ...)
+npm error   38 more (@emotion/use-insertion-effect-with-fallbacks, ...)
+npm error
+npm error Could not resolve dependency:
+npm error peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-spring@9.7.5
+npm error node_modules/react-spring
+npm error   react-spring@"^9.7.3" from the root project
+npm error
+npm error Conflicting peer dependency: react@18.3.1
+npm error node_modules/react
+npm error   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-spring@9.7.5
+npm error   node_modules/react-spring
+npm error     react-spring@"^9.7.3" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_15_56_431Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_15_56_431Z-debug-0.log
+
+C:\src\react\iranian-accounting (main -> origin)
+λ rm -rf node_modules
+
+C:\src\react\iranian-accounting (main -> origin)
+λ rm package-lock.json
+
+C:\src\react\iranian-accounting (main -> origin)
+λ npm install
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: iranian-accounting@0.0.0
+npm error Found: react@19.1.0
+npm error node_modules/react
+npm error   react@"^19.0.0" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-spring@9.7.5
+npm error node_modules/react-spring
+npm error   react-spring@"^9.7.3" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_19_51_088Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\ParsTech\AppData\Local\npm-cache\_logs\2025-04-01T17_19_51_088Z-debug-0.log
