@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import DatePicker from '../common/DatePicker';
-import { DateObject } from 'react-multi-date-picker';
 import { toast } from 'react-toastify';
+import db from '../../utils/Database';
 
+// Styled Components
 const FormContainer = styled.div`
   background: #ffffff;
   border-radius: 0.5rem;
@@ -210,7 +211,7 @@ const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   `}
 `;
 
-interface PersonFormData {
+interface FormData {
   types: string[];
   code: string;
   name: string;
@@ -229,9 +230,9 @@ interface PersonFormData {
   taxType: string;
   priceList: string;
   branchCode: string;
-  birthDate: DateObject | null;
-  marriageDate: DateObject | null;
-  membershipDate: DateObject | null;
+  birthDate: string;
+  marriageDate: string;
+  membershipDate: string;
   phone1: string;
   phone2: string;
   phone3: string;
@@ -239,7 +240,8 @@ interface PersonFormData {
 }
 
 export const NewPersonForm: React.FC = () => {
-  const [formData, setFormData] = useState<PersonFormData>({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<FormData>({
     types: [],
     code: '',
     name: '',
@@ -258,9 +260,9 @@ export const NewPersonForm: React.FC = () => {
     taxType: '',
     priceList: '',
     branchCode: '',
-    birthDate: null,
-    marriageDate: null,
-    membershipDate: null,
+    birthDate: '',
+    marriageDate: '',
+    membershipDate: '',
     phone1: '',
     phone2: '',
     phone3: '',
@@ -329,11 +331,47 @@ export const NewPersonForm: React.FC = () => {
     e.preventDefault();
     
     try {
-      // TODO: اینجا اطلاعات به سرور ارسال می‌شود
-      console.log(formData);
+      // تبدیل داده‌های فرم به ساختار مناسب برای دیتابیس
+      const personData = {
+        types: formData.types,
+        code: formData.code,
+        name: formData.name,
+        email: formData.email,
+        website: formData.website,
+        description: formData.description,
+        creditLimit: formData.creditLimit,
+        isActive: formData.isActive,
+        category: formData.category,
+        balance: formData.balance,
+        bankAccounts: [
+          { accountNumber: formData.bankAccount1, isDefault: true },
+          { accountNumber: formData.bankAccount2, isDefault: false },
+          { accountNumber: formData.bankAccount3, isDefault: false }
+        ].filter(account => account.accountNumber),
+        phones: [
+          { number: formData.phone1, type: 'phone1' },
+          { number: formData.phone2, type: 'phone2' },
+          { number: formData.phone3, type: 'phone3' }
+        ].filter(phone => phone.number),
+        taxType: formData.taxType,
+        priceList: formData.priceList,
+        branchCode: formData.branchCode,
+        birthDate: formData.birthDate,
+        marriageDate: formData.marriageDate,
+        membershipDate: formData.membershipDate,
+        avatar: previewUrl,
+        openingDebit: formData.openingDebit,
+        openingCredit: formData.openingCredit
+      };
+
+      await db.init();
+      await db.addPerson(personData);
+      
       toast.success('اطلاعات با موفقیت ذخیره شد');
+      navigate('/persons'); // هدایت به صفحه لیست اشخاص
     } catch (error) {
       toast.error('خطا در ذخیره اطلاعات');
+      console.error(error);
     }
   };
 
@@ -619,26 +657,29 @@ export const NewPersonForm: React.FC = () => {
           <FormGrid>
             <FormGroup>
               <Label>تاریخ تولد</Label>
-              <DatePicker
+              <Input
+                type="date"
+                name="birthDate"
                 value={formData.birthDate}
-                onChange={(date) => setFormData(prev => ({ ...prev, birthDate: date }))}
-                placeholder="تاریخ تولد را انتخاب کنید"
+                onChange={handleChange}
               />
             </FormGroup>
             <FormGroup>
               <Label>تاریخ ازدواج</Label>
-              <DatePicker
+              <Input
+                type="date"
+                name="marriageDate"
                 value={formData.marriageDate}
-                onChange={(date) => setFormData(prev => ({ ...prev, marriageDate: date }))}
-                placeholder="تاریخ ازدواج را انتخاب کنید"
+                onChange={handleChange}
               />
             </FormGroup>
             <FormGroup>
               <Label>تاریخ عضویت</Label>
-              <DatePicker
+              <Input
+                type="date"
+                name="membershipDate"
                 value={formData.membershipDate}
-                onChange={(date) => setFormData(prev => ({ ...prev, membershipDate: date }))}
-                placeholder="تاریخ عضویت را انتخاب کنید"
+                onChange={handleChange}
               />
             </FormGroup>
           </FormGrid>
@@ -657,7 +698,9 @@ export const NewPersonForm: React.FC = () => {
         </FormSection>
 
         <ButtonGroup>
-          <Button type="button">انصراف</Button>
+          <Button type="button" onClick={() => navigate('/persons')}>
+            انصراف
+          </Button>
           <Button type="submit" $variant="primary">
             ذخیره اطلاعات
           </Button>

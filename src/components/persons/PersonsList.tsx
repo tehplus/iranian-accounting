@@ -1,199 +1,323 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PersonCard from './common/PersonCard';
+import { toast } from 'react-toastify';
+import db, { Person } from '../../utils/Database';
 
 const ListContainer = styled.div`
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   padding: 2rem;
 `;
 
-const Header = styled.div`
+const ListHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
 `;
 
-const Title = styled.h1`
-  font-family: 'AnjomanMax';
+const Title = styled.h2`
   font-size: 1.5rem;
-  color: ${props => props.theme.colors.gray[800]};
+  color: #1e293b;
+  font-weight: 600;
 `;
 
-const AddButton = styled.button`
-  background-color: ${props => props.theme.colors.primary};
+const AddButton = styled(Link)`
+  background: #6366f1;
   color: white;
-  border: none;
-  border-radius: 0.375rem;
   padding: 0.75rem 1.5rem;
-  font-family: 'AnjomanMax';
-  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 
   &:hover {
-    background-color: ${props => props.theme.colors.primaryDark};
+    background: #4f46e5;
   }
 `;
 
-const FilterSection = styled.div`
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
+const SearchContainer = styled.div`
   margin-bottom: 2rem;
-  box-shadow: ${props => props.theme.shadows.base};
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
 `;
 
 const SearchInput = styled.input`
-  flex: 1;
-  min-width: 200px;
+  width: 100%;
   padding: 0.75rem;
-  border: 1px solid ${props => props.theme.colors.gray[200]};
+  border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
-  font-family: 'AnjomanMax';
   font-size: 0.875rem;
 
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.colors.primary};
+    border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
   }
 `;
 
-const FilterSelect = styled.select`
-  padding: 0.75rem;
-  border: 1px solid ${props => props.theme.colors.gray[200]};
-  border-radius: 0.375rem;
-  font-family: 'AnjomanMax';
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const Th = styled.th`
+  text-align: right;
+  padding: 1rem;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
   font-size: 0.875rem;
-  min-width: 150px;
+  border-bottom: 2px solid #e2e8f0;
+`;
 
-  &:focus {
-    outline: none;
-    border-color: ${props => props.theme.colors.primary};
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+const Td = styled.td`
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #1e293b;
+  font-size: 0.875rem;
+`;
+
+const StatusBadge = styled.span<{ $active?: boolean }>`
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: ${props => props.$active ? '#dcfce7' : '#fee2e2'};
+  color: ${props => props.$active ? '#166534' : '#991b1b'};
+`;
+
+const ActionButton = styled.button`
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  color: #6366f1;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #4f46e5;
+  }
+
+  &:disabled {
+    color: #cbd5e1;
+    cursor: not-allowed;
   }
 `;
 
-const PersonsGrid = styled.div`
-  display: grid;
-  gap: 1rem;
+const EmptyState = styled.div`
+  text-align: center;
+  padding: 3rem;
+  color: #64748b;
 `;
 
-interface Person {
-  id: string;
-  type: 'customer' | 'supplier' | 'employee';
-  code: string;
-  name: string;
-  phone?: string;
-  mobile?: string;
-  email?: string;
-  nationalCode?: string;
-  economicCode?: string;
-  registerNumber?: string;
-}
+const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+`;
 
-// داده‌های نمونه برای تست
-const samplePersons: Person[] = [
-  {
-    id: '1',
-    type: 'customer',
-    code: 'C001',
-    name: 'شرکت نمونه',
-    phone: '021-88888888',
-    mobile: '0912-1234567',
-    email: 'info@sample.com',
-    economicCode: '123456789',
-    registerNumber: '987654'
-  },
-  {
-    id: '2',
-    type: 'supplier',
-    code: 'S001',
-    name: 'تولیدی مثال',
-    phone: '021-77777777',
-    mobile: '0912-7654321',
-    email: 'info@example.com',
-    economicCode: '987654321',
-    registerNumber: '123456'
-  },
-  // می‌توانید موارد بیشتری اضافه کنید
-];
+const PageButton = styled.button<{ $active?: boolean }>`
+  padding: 0.5rem 1rem;
+  border: 1px solid ${props => props.$active ? '#6366f1' : '#e2e8f0'};
+  background: ${props => props.$active ? '#6366f1' : 'white'};
+  color: ${props => props.$active ? 'white' : '#1e293b'};
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #6366f1;
+  }
+
+  &:disabled {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+  }
+`;
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('fa-IR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+};
+
+const formatNumber = (number: number) => {
+  return new Intl.NumberFormat('fa-IR').format(number);
+};
 
 const PersonsList: React.FC = () => {
-  const navigate = useNavigate();
-  const [persons, setPersons] = useState<Person[]>(samplePersons);
+  const [persons, setPersons] = useState<Person[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [typeFilter, setTypeFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
+  useEffect(() => {
+    loadPersons();
+  }, []);
 
-  const handleTypeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTypeFilter(event.target.value);
-  };
-
-  const handleEdit = (id: string) => {
-    navigate(`/persons/edit/${id}`);
-  };
-
-  const handleDelete = (id: string) => {
-    if (window.confirm('آیا از حذف این شخص اطمینان دارید؟')) {
-      setPersons(prev => prev.filter(person => person.id !== id));
+const loadPersons = async () => {
+    try {
+      await db.init();
+      const data = await db.getAllPersons();
+      console.log('Loaded persons:', data); // برای دیباگ
+      setPersons(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading persons:', error);
+      toast.error('خطا در بارگذاری اطلاعات');
+      setLoading(false);
     }
   };
 
-  const handleView = (id: string) => {
-    navigate(`/persons/${id}`);
+
+  const handleDelete = async (id: number) => {
+    if (window.confirm('آیا از حذف این شخص اطمینان دارید؟')) {
+      try {
+        await db.deletePerson(id);
+        toast.success('شخص با موفقیت حذف شد');
+        loadPersons();
+      } catch (error) {
+        console.error('Error deleting person:', error);
+        toast.error('خطا در حذف شخص');
+      }
+    }
   };
 
-  const filteredPersons = persons.filter(person => {
-    const matchesSearch = person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         person.code.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = typeFilter ? person.type === typeFilter : true;
-    return matchesSearch && matchesType;
-  });
+  const filteredPersons = persons.filter(person =>
+    person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    person.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    person.email?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const pageCount = Math.ceil(filteredPersons.length / itemsPerPage);
+  const paginatedPersons = filteredPersons.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  if (loading) {
+    return <div>در حال بارگذاری...</div>;
+  }
 
   return (
     <ListContainer>
-      <Header>
+      <ListHeader>
         <Title>لیست اشخاص</Title>
-        <AddButton onClick={() => navigate('/persons/new')}>
-          افزودن شخص جدید
-        </AddButton>
-      </Header>
+        <AddButton to="/persons/new">افزودن شخص جدید</AddButton>
+      </ListHeader>
 
-      <FilterSection>
+      <SearchContainer>
         <SearchInput
           type="text"
-          placeholder="جستجو بر اساس نام یا کد..."
+          placeholder="جستجو بر اساس نام، کد یا ایمیل..."
           value={searchTerm}
-          onChange={handleSearch}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <FilterSelect value={typeFilter} onChange={handleTypeFilter}>
-          <option value="">همه اشخاص</option>
-          <option value="customer">مشتریان</option>
-          <option value="supplier">تأمین‌کنندگان</option>
-          <option value="employee">کارمندان</option>
-        </FilterSelect>
-      </FilterSection>
+      </SearchContainer>
 
-      <PersonsGrid>
-        {filteredPersons.map(person => (
-          <PersonCard
-            key={person.id}
-            {...person}
-            onEdit={() => handleEdit(person.id)}
-            onDelete={() => handleDelete(person.id)}
-            onView={() => handleView(person.id)}
-          />
-        ))}
-      </PersonsGrid>
+      {paginatedPersons.length > 0 ? (
+        <>
+          <Table>
+            <thead>
+              <tr>
+                <Th>کد</Th>
+                <Th>نام</Th>
+                <Th>نوع</Th>
+                <Th>ایمیل</Th>
+                <Th>مانده حساب</Th>
+                <Th>وضعیت</Th>
+                <Th>تاریخ ثبت</Th>
+                <Th>عملیات</Th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedPersons.map(person => (
+                <tr key={person.id}>
+                  <Td>{person.code}</Td>
+                  <Td>{person.name}</Td>
+                  <Td>{person.types.join(' / ')}</Td>
+                  <Td>{person.email}</Td>
+                  <Td style={{ direction: 'ltr', textAlign: 'right' }}>
+                    {formatNumber(person.balance)} ریال
+                  </Td>
+                  <Td>
+                    <StatusBadge $active={person.isActive}>
+                      {person.isActive ? 'فعال' : 'غیرفعال'}
+                    </StatusBadge>
+                  </Td>
+                  <Td>{formatDate(person.createdAt)}</Td>
+                  <Td>
+                    <ActionButton
+                      onClick={() => handleDelete(person.id!)}
+                      title="حذف"
+                    >
+                      🗑️
+                    </ActionButton>
+                    <ActionButton
+                      as={Link}
+                      to={`/persons/edit/${person.id}`}
+                      title="ویرایش"
+                    >
+                      ✏️
+                    </ActionButton>
+                  </Td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <Pagination>
+            <PageButton
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+            >
+              ‹‹
+            </PageButton>
+            <PageButton
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              ‹
+            </PageButton>
+            
+            {[...Array(pageCount)].map((_, i) => (
+              <PageButton
+                key={i + 1}
+                onClick={() => setCurrentPage(i + 1)}
+                $active={currentPage === i + 1}
+              >
+                {i + 1}
+              </PageButton>
+            ))}
+
+            <PageButton
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, pageCount))}
+              disabled={currentPage === pageCount}
+            >
+              ›
+            </PageButton>
+            <PageButton
+              onClick={() => setCurrentPage(pageCount)}
+              disabled={currentPage === pageCount}
+            >
+              ››
+            </PageButton>
+          </Pagination>
+        </>
+      ) : (
+        <EmptyState>
+          هیچ شخصی یافت نشد.
+        </EmptyState>
+      )}
     </ListContainer>
   );
 };
