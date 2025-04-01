@@ -7,8 +7,8 @@ import { GlobalStyles } from './styles/GlobalStyles';
 import { store } from './store/store';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
-import { register } from 'chart.js';
 import {
+  Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -22,7 +22,7 @@ import {
 } from 'chart.js';
 
 // ثبت کامپوننت‌های Chart.js به صورت سراسری
-register(
+ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
